@@ -1,0 +1,115 @@
+{
+  "name": "ag-search",
+  "displayName": "AG Global Search",
+  "description": "Use AG (The Silver Searcher) for fast global search across your project",
+  "version": "0.1.0",
+  "publisher": "afshmini",
+  "license": "MIT",
+  "author": {
+    "name": "afshmini",
+    "email": "afshmini@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/afshmini/ag-search"
+  },
+  "bugs": {
+    "url": "https://github.com/afshmini/ag-search/issues"
+  },
+  "homepage": "https://github.com/afshmini/ag-search#readme",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "cursor-ag.search",
+        "title": "AG: Search in Project",
+        "category": "AG Search"
+      },
+      {
+        "command": "cursor-ag.searchInFolder",
+        "title": "AG: Search in Folder",
+        "category": "AG Search"
+      },
+      {
+        "command": "cursor-ag.openResult",
+        "title": "Open Result",
+        "icon": "$(go-to-file)"
+      }
+    ],
+    "views": {
+      "explorer": [
+        {
+          "id": "agSearchResults",
+          "name": "AG Search Results",
+          "when": "true"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "cursor-ag.search",
+        "key": "ctrl+shift+f",
+        "mac": "cmd+shift+f"
+      }
+    ],
+    "configuration": {
+      "title": "AG Search",
+      "properties": {
+        "cursor-ag.agPath": {
+          "type": "string",
+          "default": "ag",
+          "description": "Path to the AG executable. Use 'ag' if it's in your PATH, or provide full path."
+        },
+        "cursor-ag.defaultOptions": {
+          "type": "array",
+          "default": [
+            "--smart-case",
+            "--numbers",
+            "--column"
+          ],
+          "description": "Default AG options to use for searches"
+        },
+        "cursor-ag.ignorePatterns": {
+          "type": "array",
+          "default": [
+            "node_modules",
+            ".git",
+            "dist",
+            "build",
+            ".next",
+            ".cache"
+          ],
+          "description": "Patterns to ignore in searches"
+        },
+        "cursor-ag.debug": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable debug logging to the output channel. When disabled, no debug messages will be logged."
+        },
+        "cursor-ag.maxResults": {
+          "type": "number",
+          "default": 10000,
+          "description": "Maximum number of search results to return. This helps prevent buffer overflow errors with very large result sets."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.75.0",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {}
+}
+
