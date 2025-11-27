@@ -2,13 +2,28 @@
 
 ## Prerequisites
 
-1. **Create a Publisher Account**
+1. **Node.js Version**
+   - **Required**: Node.js v20.0.0 or higher
+   - Check your version: `node --version`
+   - If you have Node.js v18 or lower, you need to upgrade:
+     ```bash
+     # Using NodeSource repository (Ubuntu/Debian)
+     curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+     sudo apt-get install -y nodejs
+     
+     # Or using nvm (recommended)
+     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+     nvm install 20
+     nvm use 20
+     ```
+
+2. **Create a Publisher Account**
    - Visit: https://marketplace.visualstudio.com/manage
    - Sign in with Microsoft/Azure account
    - Click "Create Publisher"
    - Choose a unique publisher ID (this will be your `publisher` in package.json)
 
-2. **Get Personal Access Token**
+3. **Get Personal Access Token**
    - Go to: https://dev.azure.com
    - Click on your profile → Personal Access Tokens
    - Create new token with:
@@ -22,6 +37,20 @@
 
 ```bash
 npm install -g @vscode/vsce
+```
+
+**Note**: If you have multiple Node.js installations, make sure you're using Node.js v20+:
+```bash
+# Check which Node.js is being used
+which node
+node --version
+
+# If you see v18 or lower, you may need to:
+# Option 1: Update your PATH to prioritize /usr/bin
+export PATH="/usr/bin:$PATH"
+
+# Option 2: Use the full path
+/usr/bin/node $(which vsce) package
 ```
 
 ### 2. Update package.json
@@ -109,6 +138,11 @@ vsce publish
 ### "Personal Access Token expired"
 - Create a new token at https://dev.azure.com
 - Use the new token when prompted
+
+### "ReferenceError: File is not defined" or "Unsupported engine"
+- This error occurs when using Node.js v18 or lower
+- **Solution**: Upgrade to Node.js v20 or higher (see Prerequisites section)
+- The `vsce` tool requires Node.js v20+ due to dependencies
 
 ## Additional Resources
 
