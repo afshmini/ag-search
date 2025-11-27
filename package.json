@@ -2,7 +2,7 @@
   "name": "ag-search",
   "displayName": "AG Global Search",
   "description": "Use AG (The Silver Searcher) for fast global search across your project",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "afshmini",
   "license": "MIT",
   "author": {
@@ -17,6 +17,7 @@
     "url": "https://github.com/afshmini/ag-search/issues"
   },
   "homepage": "https://github.com/afshmini/ag-search#readme",
+  "icon": "icon.png",
   "engines": {
     "vscode": "^1.75.0"
   },
